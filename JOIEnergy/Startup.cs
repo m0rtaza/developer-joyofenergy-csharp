@@ -53,6 +53,9 @@ namespace JOIEnergy
             };
 
             services.AddMvc(options => options.EnableEndpointRouting = false);
+            services.AddEndpointsApiExplorer();
+            services.AddSwaggerGen();
+
             services.AddTransient<IAccountService, AccountService>();
             services.AddTransient<IMeterReadingService, MeterReadingService>();
             services.AddTransient<IPricePlanService, PricePlanService>();
@@ -66,6 +69,8 @@ namespace JOIEnergy
         {
             if (env.IsDevelopment())
             {
+                app.UseSwagger();
+                app.UseSwaggerUI();
                 app.UseDeveloperExceptionPage();
             }
 
